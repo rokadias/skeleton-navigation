@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { AureliaPlugin } = require('aurelia-webpack-plugin');
+const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
 const { optimize: { CommonsChunkPlugin }, ProvidePlugin } = require('webpack')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
 
@@ -88,6 +88,42 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
   },
   plugins: [
     new AureliaPlugin(),
+    new ModuleDependenciesPlugin({
+      "aurelia-materialize-bridge": [
+        "./autocomplete/autocomplete",
+        "./badge/badge",
+        "./breadcrumbs/breadcrumbs",
+        "./box/box",
+        "./button/button",
+        "./card/card",
+        "./carousel/carousel",
+        "./checkbox/checkbox",
+        "./chip/chips",
+        "./collapsible/collapsible",
+        "./collection/collection",
+        "./datepicker/datepicker",
+        "./dropdown/dropdown",
+        "./file/file",
+        "./input/input",
+        "./input/input-prefix",
+        "./modal/modal",
+        "./modal/modal-trigger",
+        "./navbar/navbar",
+        "./pagination/pagination",
+        "./progress/progress",
+        "./pushpin/pushpin",
+        "./radio/radio",
+        "./range/range",
+        "./select/select",
+        "./slider/slider",
+        "./switch/switch",
+        "./tabs/tabs",
+        "./tooltip/tooltip",
+        "./transitions/fadein-image",
+        "./transitions/staggered-list",
+        "./waves/waves"
+      ]
+    }),
     new ProvidePlugin({
       'Promise': 'bluebird',
       '$': 'jquery',

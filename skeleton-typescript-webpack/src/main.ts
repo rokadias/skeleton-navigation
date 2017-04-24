@@ -2,6 +2,7 @@
 import '../static/styles.css';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'materialize-css';
 import { Aurelia } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 import * as Bluebird from 'bluebird';
@@ -12,7 +13,42 @@ Bluebird.config({ warnings: { wForgottenReturn: false } });
 export async function configure(aurelia: Aurelia) {
   aurelia.use
     .standardConfiguration()
-    .developmentLogging();
+    .developmentLogging()
+    .plugin(PLATFORM.moduleName('aurelia-materialize-bridge'),
+            (bridge: any) => {
+              bridge
+                .useAutoComplete()
+                .useBadge()
+                .useBreadcrumbs()
+                .useBox()
+                .useButton()
+                .useCard()
+                .useCarousel()
+                .useCheckbox()
+                .useChip()
+                .useCollapsible()
+                .useCollection()
+                .useColors()
+                .useDatePicker()
+                .useDropdown()
+                .useFile()
+                .useInput()
+                .useModal()
+                .useNavbar()
+                .usePagination()
+                .useProgress()
+                .usePushpin()
+                .useRadio()
+                .useRange()
+                .useSelect()
+                .useSlider()
+                .useSwitch()
+                .useTabs()
+                .useTooltip()
+                .useTransitions()
+                .useWaves();
+            }
+    );
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));
